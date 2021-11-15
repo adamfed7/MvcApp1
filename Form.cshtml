@@ -1,0 +1,27 @@
+﻿@model MvcApp1.Models.FormModel
+
+@{
+    ViewData["Title"] = "Form";
+
+    int day = (DateTime.Now - Model.DateBirth).Days;
+    string Days;
+    if (day > 0)
+    {
+        Days = day.ToString();
+    }
+    else { Days = " Data jest nieprawidłowa"; }
+}
+
+<div style="text-align:center;">
+    <h3>Dane z formularza</h3>
+    <div style="text-align:left;">
+        @Html.DisplayNameFor(model => model.Name):          @Html.DisplayFor(model => model.Name)
+        <br />
+        <label>Liczba dni od daty urodzin do dziś: </label> @(Days)
+        <br />
+        <label>Rok urodzenia przestepny:</label> @((DateTime.IsLeapYear(Model.DateBirth.Year)))
+    </div>
+</div>
+
+<br />
+<a href="/form.html">Powrót do Form (HTML)</a>
